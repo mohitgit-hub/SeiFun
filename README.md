@@ -1,13 +1,63 @@
-# Sample Hardhat Project
+# Sei Fun
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+A simple decentralized application (dApp) to launch your cryptocurrency on the Sei blockchain in just a few clicks. Built during the Sei All Star Hackathon.
 
-Try running some of the following tasks:
+## Description
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
-```
+Sei Fun empowers users to create their own cryptocurrency on the Sei blockchain effortlessly. Developed as part of the Sei All Star Hackathon, this dApp simplifies token creation with a user-friendly interface, making blockchain innovation accessible to everyone.
+
+## Features
+
+### Current Features
+- **ERC-20 Token Creation**: Deploy your own custom ERC-20 token on the Sei blockchain.
+
+### Upcoming Features
+- **Token Buy and Sell**: Enable trading functionality for your token.
+- **Liquidity Management**: Add or remove liquidity with ease.
+- More exciting features in development!
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Nikhilesh-Attal/Sei-project.git
+Navigate to the project directory:
+bash
+cd sei-dApp
+Install dependencies:
+bash
+npm install
+Start the development server:
+bash
+npm run dev
+Adding Sei Testnet Chain
+To interact with the Sei Fun dApp, you’ll need to connect your wallet to the Sei testnet. Follow these steps:
+Open your wallet (e.g., MetaMask or any Sei-compatible wallet).
+Add the Sei testnet manually with the following details:
+Network Name: Sei Testnet
+RPC URL: evm-rpc-testnet.sei-apis.com
+Chain ID: 1328
+Currency Symbol: SEI
+Block Explorer URL: evm-rpc-testnet.sei-apis.com
+Save and switch to the Sei Testnet network in your wallet.
+For more details, refer to the official Sei documentation.
+Faucet
+To test the dApp, you’ll need testnet SEI tokens. Use the official Sei testnet faucet:
+Visit the Sei Testnet Faucet.
+Enter your wallet address.
+Request testnet SEI tokens (typically limited to a certain amount per request).
+Wait for the tokens to appear in your wallet (may take a few minutes).
+Note: Ensure you’re connected to the Sei Testnet before requesting tokens.
+Usage
+Open your browser and navigate to the local development URL (e.g., http://localhost:3000).
+Connect your Sei-compatible wallet (configured to Sei Testnet).
+Use the dApp interface to create your ERC-20 token and explore upcoming features as they roll out!
+Built With
+Solidity: For smart contract development.
+ReactJS: For the frontend user interface.
+Sei Blockchain
+License
+MIT License (LICENSE) (or update with your preferred license)
+Acknowledgements
+Built during the Sei All Star Hackathon.
+Thanks to the Sei community for support and inspiration!
