@@ -20,7 +20,7 @@ Sei Fun empowers users to create their own cryptocurrency on the Sei blockchain 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Nikhilesh-Attal/Sei-project.git
+   git clone https://github.com/mohitgit-hub/SeiFun
    ```
 
 2. Navigate to the project directory:
