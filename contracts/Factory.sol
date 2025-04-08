@@ -23,16 +23,13 @@ contract Factory {
     mapping(address => address[]) public userProjects;
     event ProjectCreated(address indexed owner, address indexed marketplace, address indexed token);
     function createProject(string memory name_, string memory symbol_) external {
-        // Step 1: Deploy Token
+
         TokenCreation token = new TokenCreation(name_, symbol_);
 
-        // Step 2: Deploy Marketplace with token address
         Marketplace market = new Marketplace(msg.sender, address(token));
 
-        // Step 3: Mint initial supply to marketplace
         token.mint(address(market));
 
-        // Step 4: Store info
         ProjectInfo memory info = ProjectInfo({
             marketplace: address(market),
             token: address(token),
