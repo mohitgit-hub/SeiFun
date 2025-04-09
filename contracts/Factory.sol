@@ -1,7 +1,8 @@
 /*
 Factory contract use to create ERC20 Token and Send supply to marketplace Contract.
 This contract creates multiple instances of TokenCreate.sol and Marketplace.sol allows users to create tokens and trade tokens.
-
+Contract Address - 0xd28fd559cf57DcFb07bB708ab5443957B36c08AE
+TXN -http://seitrace.com/tx/0xbceb9589dae542d843a23ce803aa6d50021baa75e94ab417bf653124a8402643?chain=atlantic-2
 */
 
 // SPDX-License-Identifier: MIT
