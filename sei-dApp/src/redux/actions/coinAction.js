@@ -1,0 +1,1 @@
+//Coin Action code to work with the redux

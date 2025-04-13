@@ -1,0 +1,1 @@
+//Meme coin creation model code 

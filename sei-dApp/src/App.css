@@ -1,3 +1,21 @@
+@import './assets/fonts/Satoshi/Fonts/WEB/css/satoshi.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+	font-family: 'Satoshi-Regular', sans-serif;
+}
+
+.underLight:after {
+	display: block;
+	content: '';
+	margin-top: 6px;
+	border-bottom: solid 3px #0ea5e9;
+	transform: scaleX(0);
+	transition: transform 250ms ease-in-out;
+}
+.underLight:hover:after {
+	transform: scaleX(1);
+}
