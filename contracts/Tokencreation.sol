@@ -1,14 +1,22 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.0;
+
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract SeiFun is ERC20 {
-    constructor(uint256 initialSupply, string memory name_, string memory symbol_) ERC20( name_, symbol_) {
+contract TokenCreation is ERC20 {
+    address public factory;
+    uint256 public constant initialSupply = 1_000_000_000 * 1e18;
 
-        _mint(address(this), initialSupply);
+    constructor(string memory name_, string memory symbol_) ERC20(name_, symbol_) {
+        factory = msg.sender;
     }
 
-    function decimals() public view override virtual returns (uint8) {
+    function mint(address to) external {
+        require(msg.sender == factory, "Not authorized");
+        _mint(to, initialSupply);
+    }
+
+    function decimals() public view virtual override returns (uint8) {
         return 18;
     }
 }

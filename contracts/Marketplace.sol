@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 interface ITokenCreation {
     function balanceOf(address account) external view returns (uint256);
@@ -21,7 +21,7 @@ contract Marketplace is Ownable, ReentrancyGuard {
     uint256 public tokensBought;
     uint256 public tokensSold;
     uint256 public feeCollected;
-    uint256 public constant buyFee = 0.02 ether;
+    uint256 public constant fee = 0.02 ether;
 
     event TokensBought(address indexed buyer, uint256 amount, uint256 price);
     event TokensSold(address indexed seller, uint256 amount, uint256 price);
@@ -29,7 +29,6 @@ contract Marketplace is Ownable, ReentrancyGuard {
     constructor(address _owner, address _token) Ownable(_owner) {
         factory = msg.sender;
         tokenAddress = ITokenCreation(_token);
-        // transferOwnership(_owner);
     }
 
     function getAvailableTokens() public view returns (uint256) {
@@ -54,9 +53,10 @@ contract Marketplace is Ownable, ReentrancyGuard {
     }
 
     function buyTokens() external payable nonReentrant {
-        require(msg.value > buyFee, "Send more than fee");
-        uint256 valueAfterFee = msg.value - buyFee;
-        feeCollected += buyFee;
+        // need to deduct msg.value + fee (i.e 0.02 ether)
+        require(msg.value > fee, "Send more than fee");
+        uint256 valueAfterFee = msg.value - fee;
+        feeCollected += fee;
 
         uint256 tokenPrice = getUpdatedPrice();
         uint256 tokensToBuy = (valueAfterFee * 1e18) / tokenPrice;
@@ -74,21 +74,23 @@ contract Marketplace is Ownable, ReentrancyGuard {
 
         uint256 tokenPrice = getUpdatedPrice();
         uint256 seiToReturn = (_amountToSell * tokenPrice) / 1e18;
-
+        uint256 seiToReturnAfterFee = seiToReturn - fee;
+        require(tokenAddress.approve(address(this), _amountToSell),"Token transfer not approved");
         require(tokenAddress.transferFrom(msg.sender, address(this), _amountToSell), "Token transfer failed");
-        require(address(this).balance >= seiToReturn, "Insufficient SEI");
+        require(address(this).balance >= seiToReturnAfterFee, "Insufficient SEI");
 
         tokensSold += _amountToSell;
 
         emit TokensSold(msg.sender, _amountToSell, tokenPrice);
-        payable(msg.sender).transfer(seiToReturn);
+        payable(msg.sender).transfer(seiToReturnAfterFee);
     }
 
-    function withdrawFees() external onlyOwner {
+    function withdrawFees() external {   // Function need to be called from factory contract
+        require(msg.sender == factory,"You're not Developer");
         require(feeCollected > 0, "No fees");
         uint256 amount = feeCollected;
         feeCollected = 0;
-        payable(owner()).transfer(amount);
+        payable(factory).transfer(amount);
     }
 
     receive() external payable {}
