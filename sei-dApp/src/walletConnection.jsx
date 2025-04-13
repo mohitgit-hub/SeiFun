@@ -40,13 +40,15 @@ function EthSend() {
 	function sendSei() {
 		sendTransaction({
 			to: document.getElementById('address').value,
-			value: '100000000000000000',
+			value: '20000000000000000',
 		})
+
+		//on clicking submit, 0.02 sei should be deducted / 20000000000000000
 	}
 	return (
 		<div>
 			<input id='address' type='text' placeholder='Address' />
-			<button onClick={sendSei}> 0.1 Sei</button>
+			<button onClick={sendSei}>Send 0.1 Sei</button>
 			<br />
 			{hash}
 		</div>

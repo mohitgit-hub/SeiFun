@@ -1,6 +1,5 @@
 import './App.css'
 import './walletConnection.jsx'
-import WalletConnection from './walletConnection.jsx'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import CreateCoins from './pages/CreateCoins'
