@@ -34,7 +34,7 @@ export default function AddCoins() {
 						for='title'
 						class='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
 					>
-						Ticker Title
+						Ticker Name
 					</label>
 				</div>
 
@@ -55,7 +55,73 @@ export default function AddCoins() {
 						Description
 					</label>
 				</div>
+				<div class='relative z-0 w-full mb-5 group'>
+					<input
+						type='text'
+						name='title'
+						id='title'
+						class='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+						placeholder=' '
+						
+					/>
+					<label
+						for='title'
+						class='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+					>
+						Twitter or X link (optional)
+					</label>
+				</div>
+				<div class='relative z-0 w-full mb-5 group'>
+					<input
+						type='text'
+						name='title'
+						id='title'
+						class='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+						placeholder=' '
+						
+					/>
+					<label
+						for='title'
+						class='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+					>
+						Website Link (optional)
+					</label>
+				</div>
+				<div class='relative z-0 w-full mb-5 group'>
+					<input
+						type='text'
+						name='title'
+						id='title'
+						class='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+						placeholder=' '
+						
+					/>
+					<label
+						for='title'
+						class='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+					>
+						Telegram Link (optional)
+					</label>
+				</div>
 
+				<div class='relative z-0 w-full mb-5 group'>
+					<input
+						type='file'
+						name='title'
+						id='title'
+						class='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+						placeholder=' '
+						
+					/>
+					<label
+						for='title'
+						class='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+					>
+						Upload Image
+					</label>
+				</div>
+				<p className='text-white text-md my-2'>Note : coin data cannot be changed after creation</p>
+				
 				{/* <!-- Submit Button --> */}
 				<button
 					type='submit'

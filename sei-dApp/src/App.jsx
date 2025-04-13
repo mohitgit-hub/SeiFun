@@ -21,8 +21,8 @@ function App() {
 						<Route path='/' element={<Homepage />} />
 						<Route path='/addCoins' element={<CreateCoins />} />
 						<Route path='/profile' element={<ProfilePage />} />
+						<Route path='/wallet' element={<WalletConnect />} />
 					</Route>
-					<Route path='/wallet' element={<WalletConnect />} />
 				</Routes>
 			</div>
 		</main>
