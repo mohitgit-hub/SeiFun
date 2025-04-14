@@ -3,7 +3,7 @@ import WalletConnection from "../walletConnection"
 
 export default function WalletConnect() {
 	return (
-		<div className='max-w-sm min-h-screen flex flex-col justify-center mx-auto'>
+		<div className='max-w-sm min-h-screen flex flex-col mx-auto'>
 			<h5 className='mb-3 text-base font-semibold text-gray-900 lg:text-xl dark:text-white'>
 				Connect wallet
 			</h5>

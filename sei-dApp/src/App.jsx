@@ -1,6 +1,5 @@
 import './App.css'
 import './walletConnection.jsx'
-import WalletConnection from './walletConnection.jsx'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import CreateCoins from './pages/CreateCoins'
@@ -21,8 +20,8 @@ function App() {
 						<Route path='/' element={<Homepage />} />
 						<Route path='/addCoins' element={<CreateCoins />} />
 						<Route path='/profile' element={<ProfilePage />} />
+						<Route path='/wallet' element={<WalletConnect />} />
 					</Route>
-					<Route path='/wallet' element={<WalletConnect />} />
 				</Routes>
 			</div>
 		</main>

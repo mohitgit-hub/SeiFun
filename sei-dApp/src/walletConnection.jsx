@@ -40,13 +40,21 @@ function EthSend() {
 	function sendSei() {
 		sendTransaction({
 			to: document.getElementById('address').value,
-			value: '100000000000000000',
+			value: '20000000000000000',
 		})
+
+		//on clicking submit, 0.02 sei should be deducted / 20000000000000000
 	}
 	return (
-		<div>
-			<input id='address' type='text' placeholder='Address' />
-			<button onClick={sendSei}> 0.1 Sei</button>
+		<div className=''>
+			<input id='address' className='w-full min-h-12 rounded px-4 text-black' type='text' placeholder='Address' />
+			<button
+				className='w-full bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 mr-2 my-2 rounded'
+				onClick={sendSei}
+			>
+				{' '}
+				0.1 Sei
+			</button>
 			<br />
 			{hash}
 		</div>
@@ -68,7 +76,11 @@ function WalletConnector() {
 	const { connectors, connect } = useConnect()
 
 	return connectors.map((connector) => (
-		<button key={connector.uid} onClick={() => connect({ connector })}>
+		<button
+			key={connector.uid}
+			onClick={() => connect({ connector })}
+			className='bg-sky-500 hover:bg-sky-700 text-white font-bold py-2 px-4 mr-2 my-2 rounded'
+		>
 			{connector.name}
 		</button>
 	))
