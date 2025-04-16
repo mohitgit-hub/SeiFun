@@ -1,1 +1,0 @@
-//Coin reducer code to work with the redux

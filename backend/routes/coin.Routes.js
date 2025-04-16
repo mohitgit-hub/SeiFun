@@ -1,1 +1,1 @@
-//Meme coins related routes
+// routes to handle coins routes
