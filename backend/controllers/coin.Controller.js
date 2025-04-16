@@ -1,1 +1,1 @@
-//Meme coin creation code and controller code
+// controllers for coins

@@ -1,14 +1,15 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 //function to connect to the database using the connection string as env variable
-const connectDatabase = () => {
-	mongoose
-		.connect(process.env.DB_LOCAL_URI)
-		.then((con) => {
-			console.log(
-				`Mongo DB is connected to the host ${con.connection.host}`
-			)
-		})
+const connectDatabase = async () => {
+    const uri = process.env.MONGO_URI
+
+    try {
+        await mongoose.connect(uri)
+        console.log('Connected to MongoDB')
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error)
+    }
 }
 
-module.exports = connectDatabase
+export default connectDatabase

@@ -1,16 +1,27 @@
 import express from 'express'
+// import multer from 'multer'
 import cors from 'cors'
-import dotenv from 'dotenv'
 
 import connectDatabase from './config/connectDatabase.js'
 import CoinModel from './models/coin.Model.js'
-dotenv.config()
+
 const app = express()
 
 app.use(express.json())
 app.use(cors())
 
-app.post('/api/coin/createCoin', async (req, res) => {
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, './uploads')
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, Date.now() + '-' + file.originalname)
+//     },
+// })
+
+// const upload = multer({ storage })
+
+app.post('/createCoin', async (req, res) => {
     try {
         const { name, ticker, description, image } = req.body
 
@@ -33,7 +44,7 @@ app.post('/api/coin/createCoin', async (req, res) => {
     }
 })
 
-app.get('/api/coin/getCoins', async (req, res) => {
+app.get('/getCoins', async (req, res) => {
     try {
         const coins = await CoinModel.find()
         res.status(200).json(coins)
@@ -43,9 +54,10 @@ app.get('/api/coin/getCoins', async (req, res) => {
     }
 })
 
-const PORT = process.env.PORT || 5000
+//configuring environment variables here and giving the path using path module
+// dotenv.config({ path: path.join(__dirname, 'config/config.env') })
 
-app.listen(PORT, async () => {
+app.listen(5000, async () => {
     await connectDatabase()
     console.log('Server started on port 5000')
 })
