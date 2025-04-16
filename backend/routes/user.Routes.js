@@ -1,1 +1,0 @@
-//User functionality related routes
