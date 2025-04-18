@@ -14,6 +14,7 @@ interface ITokenCreation {
 }
 
 contract Marketplace is Ownable, ReentrancyGuard {
+    address public dev = 0xd99220e2494604e5A99AcF4601073CEFfD2bAA32;
     ITokenCreation public tokenAddress;
     address public immutable factory;
 
@@ -68,25 +69,25 @@ contract Marketplace is Ownable, ReentrancyGuard {
         tokenAddress.transfer(msg.sender, tokensToBuy);
     }
 
+    // Approval from JS
     function sellTokens(uint256 _amountToSell) external nonReentrant {
-        //
-        require(_amountToSell > 0, "Sell amount > 0");
+    require(_amountToSell > 0, "Sell amount > 0");
 
-        uint256 tokenPrice = getUpdatedPrice();
-        uint256 seiToReturn = (_amountToSell * tokenPrice) / 1e18;
-        uint256 seiToReturnAfterFee = seiToReturn - fee;
-        require(tokenAddress.approve(address(this), _amountToSell),"Token transfer not approved");
-        require(tokenAddress.transferFrom(msg.sender, address(this), _amountToSell), "Token transfer failed");
-        require(address(this).balance >= seiToReturnAfterFee, "Insufficient SEI");
+    uint256 tokenPrice = getUpdatedPrice();
+    uint256 seiToReturn = (_amountToSell * tokenPrice) / 1e18;
+    uint256 seiToReturnAfterFee = seiToReturn - fee;
 
-        tokensSold += _amountToSell;
+    require(tokenAddress.transferFrom(msg.sender, address(this), _amountToSell), "Token transfer failed");
+    require(address(this).balance >= seiToReturnAfterFee, "Insufficient SEI");
 
-        emit TokensSold(msg.sender, _amountToSell, tokenPrice);
-        payable(msg.sender).transfer(seiToReturnAfterFee);
-    }
+    tokensSold += _amountToSell;
 
-    function withdrawFees() external {   // Function need to be called from factory contract
-        require(msg.sender == factory,"You're not Developer");
+    emit TokensSold(msg.sender, _amountToSell, tokenPrice);
+    payable(msg.sender).transfer(seiToReturnAfterFee);
+}
+
+    function withdrawFees() external {  
+        require(msg.sender == dev,"You're not Developer");
         require(feeCollected > 0, "No fees");
         uint256 amount = feeCollected;
         feeCollected = 0;
