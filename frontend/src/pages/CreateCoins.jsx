@@ -1,5 +1,5 @@
 import React from 'react'
-import AddCoins from '../components/AddCoins'
+import AddCoins from '../components/CreateCoins/AddCoins'
 
 export default function HostEvents() {
     return <AddCoins />

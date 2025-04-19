@@ -1,7 +1,7 @@
 // src/components/Search.js
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setSearchQuery } from '../redux/features/search/searchSlice.js'
+import { setSearchQuery } from '@/redux/features/search/searchSlice.js'
 
 export default function Search() {
     const dispatch = useDispatch()
