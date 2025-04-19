@@ -11,9 +11,12 @@ function AddCoins() {
     const [teleLink, setTeleLink] = useState('')
     const [websiteLink, setWebsiteLink] = useState('')
     const [showMoreOptions, setShowMoreOptions] = useState(false)
+    const [token, setToken] = useState('')
+    const [marketplace, setMarketplace] = useState('')
+    const [walletaddress, setWalletaddress] = useState('')
     // const [imgUrl, setImgUrl] = useState('')
 
-    const handleImageUpload = async (imageFile, txHash) => {
+    const handleImageUpload = async (imageFile) => {
         if (!imageFile) {
             setTransactionStatus('Please select an image.')
             return
@@ -34,7 +37,9 @@ function AddCoins() {
             console.log('Image uploaded successfully:', uploadedImageUrl)
 
             const coinData = {
-                id: txHash,
+                token: token,
+                marketplace: marketplace,
+                walletaddress: walletaddress,
                 x_link: xLink,
                 tele_link: teleLink,
                 website_link: websiteLink,
@@ -53,7 +58,7 @@ function AddCoins() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        //await handleImageUpload(e.target.elements.image.files[0], tx.hash)
         setTransactionStatus('Connecting to wallet...')
 
         try {
@@ -64,7 +69,7 @@ function AddCoins() {
                 return
             }
 
-            const signerAddress = await contract.signer.getAddress()
+            const signerAddress = await contract.signer.getAddress() //wallet address
             console.log('Using wallet address:', signerAddress)
 
             setTransactionStatus('Sending transaction...')
@@ -87,7 +92,7 @@ function AddCoins() {
             console.log('Transaction receipt:', receipt)
             if (receipt.status === 1) {
                 setTransactionStatus('Transaction confirmed! 🎉')
-                await handleImageUpload(e.target.elements.image.files[0], tx.hash)
+                await handleImageUpload(e.target.elements.image.files[0])
                 setMemeCoinTitle('')
                 setTickerTitle('')
                 setDescription('')
