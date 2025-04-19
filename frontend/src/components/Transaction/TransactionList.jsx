@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Loader from '../Loader'
+import Loader from '../ui/Loader'
 
 const TransactionList = () => {
     const [transactions, setTransactions] = useState([])
@@ -47,13 +47,13 @@ const TransactionList = () => {
     if (loading) return <Loader />
 
     return (
-        <div className="max-w-4xl mx-auto p-4 min-h-screen ">
+        <div className="max-w-[1200px] mx-auto p-4 min-h-screen ">
             <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
                 Transaction History
             </h2>
             <div className="overflow-x-auto">
                 <table className="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs uppercase bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                    <thead className="text-xs uppercase bg-gray-100 dark:bg-darkGray text-gray-700 dark:text-gray-300">
                         <tr>
                             <th className="px-4 py-3">ID</th>
                             <th className="px-4 py-3">User ID</th>
@@ -68,7 +68,7 @@ const TransactionList = () => {
                         {transactions.map((txn) => (
                             <tr
                                 key={txn.id}
-                                className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
+                                className="bg-white dark:bg-darkGray border-b border-gray-200 dark:border-gray-700"
                             >
                                 <td className="px-4 py-2">{txn.id}</td>
                                 <td className="px-4 py-2">{txn.userId}</td>
