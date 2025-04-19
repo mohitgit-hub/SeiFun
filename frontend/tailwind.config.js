@@ -25,6 +25,7 @@ export default {
                 'pale-blue': '#F5F6FF',
                 'white-400': 'rgba(255, 255, 255, 0.80)',
                 'primary-yellow': '#fdc500',
+                darkGray: '#111114',
             },
             screens: {
                 wide: '1440px',
