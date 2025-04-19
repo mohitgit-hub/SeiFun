@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
     return (
-        <footer className="max-w-[1200px] mx-auto bg-white rounded-lg shadow-sm m-4 dark:bg-gray-800 mt-[100px]">
+        <footer className="max-w-[1200px] mx-auto bg-white rounded-lg shadow-sm m-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 mt-[100px]">
             <div className="flex justify-between items-center px-14 py-7">
                 <div>
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
