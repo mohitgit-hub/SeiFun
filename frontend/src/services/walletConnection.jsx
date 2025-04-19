@@ -39,12 +39,20 @@ export function useWalletLogic() {
     const { address } = useAccount()
     const balance = useBalance({ address })
 
-    const connectWallet = (connectorId) => {
+    const connectWallet = async (connectorId) => {
         const selectedConnector = connectors.find((c) => c.id === connectorId)
         if (selectedConnector) {
-            connect({ connector: selectedConnector })
+            try {
+                await connect({ connector: selectedConnector }) // Wait for the connection to complete
+                const connectedAddress = address // Get the connected address
+                const connectedBalance = balance
+                return { address: connectedAddress, balance: connectedBalance } // Return the address and balance
+            } catch (error) {
+                console.error('Error connecting wallet:', error)
+                throw error // Propagate the error
+            }
         } else {
-            // fallback: open download page or show message
+            // Fallback: open download page or show message
             const fallbackUrls = {
                 metamask: 'https://metamask.io/download.html',
                 coinbase: 'https://www.coinbase.com/wallet/downloads',
@@ -53,6 +61,7 @@ export function useWalletLogic() {
             if (fallbackUrls[connectorId]) {
                 window.open(fallbackUrls[connectorId], '_blank')
             }
+            throw new Error('Connector not found') // Throw an error if no connector is found
         }
     }
 
