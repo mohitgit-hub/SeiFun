@@ -7,7 +7,6 @@ import Homepage from './pages/Homepage'
 import WalletConnect from './components/Wallet/WalletConnect.jsx'
 import Layout from './components/ui/Layout.jsx'
 import FeedbackForm from './components/Feedback/FeedbackForm.jsx'
-import TransactionList from './components/Transaction/TransactionList.jsx'
 // styles & services imports
 import './App.css'
 import './services/walletConnection.jsx'
@@ -15,6 +14,7 @@ import './services/walletConnection.jsx'
 import store from './redux/store.js'
 import CoinDetails from './pages/CoinDetails'
 import Toast from './components/ui/Toast'
+import UserTransactionTable from './components/Transaction/UserTransactionTable'
 
 function App() {
     return (
@@ -28,7 +28,7 @@ function App() {
                             <Route path="/addCoins" element={<CreateCoins />} />
                             <Route path="/wallet" element={<WalletConnect />} />
                             <Route path="/feedback" element={<FeedbackForm />} />
-                            <Route path="/transactions" element={<TransactionList />} />
+                            <Route path="/userTransactions" element={<UserTransactionTable />} />
                         </Route>
                     </Routes>
                 </div>

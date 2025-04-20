@@ -1,58 +1,54 @@
 import React, { useEffect, useState } from 'react'
+import { GoogleGenAI } from '@google/genai'
 
-export default function ImageCreate({ memeCoinTitle, description }) {
-    const [image, setImage] = useState(null)
-    const [loading, setLoading] = useState(true)
+export default function ImageCreate({ memeCoinTitle, setFormData }) {
+    const [loading, setLoading] = useState(false)
 
+    // Initialize the GoogleGenAI instance with your API key
+    const ai = new GoogleGenAI({ apiKey: 'AIzaSyCEbpgBq4DjNhNi2jnAYm_z_7Gdy5eT4QU' }) // Replace with your actual API key
+
+    // Function to generate description and ticker title using Gemini model
+    async function generateDescriptionAndTicker() {
+        if (!memeCoinTitle) return // Exit if no memeCoinTitle is provided
+
+        setLoading(true)
+        try {
+            const response = await ai.models.generateContent({
+                model: 'gemini-2.0-flash',
+                contents: `${memeCoinTitle} : give description and ticker title for meme coin`, // Using memeCoinTitle as input
+            })
+
+            // Split response to get both description and tickerTitle
+            const [generatedDescription, generatedTicker] = response.text.split(',')
+
+            // Set formData with generated description and tickerTitle
+            setFormData((prevState) => ({
+                ...prevState,
+                description: generatedDescription.trim(),
+                tickerTitle: generatedTicker.trim(),
+            }))
+        } catch (error) {
+            console.error('Error generating description and ticker title:', error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    // Trigger content generation whenever memeCoinTitle changes
     useEffect(() => {
-        async function fetchImage() {
-            setLoading(true)
-            // const prompt = `${memeCoinTitle} - ${description}`
-            try {
-                const response = await fetch(
-                    'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2',
-                    {
-                        headers: {
-                            Authorization: 'Bearer YOUR_FREE_HF_API_KEY',
-                            'Content-Type': 'application/json',
-                        },
-                        method: 'POST',
-                        body: JSON.stringify({
-                            inputs: `${memeCoinTitle} - ${description}`,
-                        }),
-                    }
-                )
-
-                const blob = await response.blob()
-                const imageUrl = URL.createObjectURL(blob)
-                setImage(imageUrl)
-            } catch (error) {
-                console.error('Error generating image:', error)
-            } finally {
-                setLoading(false)
-            }
-        }
-
-        if (memeCoinTitle && description) {
-            fetchImage()
-        }
-    }, [memeCoinTitle, description])
+        generateDescriptionAndTicker()
+    }, [memeCoinTitle]) // Dependency on memeCoinTitle
 
     return (
         <div className="text-white text-center p-4">
             <div className="text-2xl font-bold mb-2">{memeCoinTitle}</div>
-            <div className="mb-4">{description}</div>
 
             {loading ? (
-                <div className="text-lg animate-pulse">Generating image...</div>
-            ) : image ? (
-                <img
-                    src={image}
-                    alt="Generated meme"
-                    className="rounded-lg mx-auto mt-4 max-w-full h-auto"
-                />
+                <div className="text-lg animate-pulse">
+                    Generating description and ticker title...
+                </div>
             ) : (
-                <div className="text-red-500">Failed to load image.</div>
+                <div className="text-lg mt-4">Description and Ticker title generated.</div>
             )}
         </div>
     )

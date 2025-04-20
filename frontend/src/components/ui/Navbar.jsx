@@ -53,7 +53,7 @@ export default function Navbar() {
                     <img className="w-12 h-auto mr-2" src={logo} alt="logo" />
                     <h1 className="text-3xl font-bold tracking-wider">
                         <Link to="/">
-                            Sei<span className="text-sky-500">.Fun</span>
+                            SEI<span className="text-sky-500">.FUN</span>
                         </Link>
                     </h1>
                 </div>
@@ -69,9 +69,9 @@ export default function Navbar() {
                             <Link to="/addCoins" className="">
                                 <div className="flex items-center ">
                                     Create Coin
-                                    <span class="relative flex size-3">
-                                        <span class="absolute -top-6 left-10 inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
-                                        <span class="relative -top-6 left-10 inline-flex size-3 rounded-full bg-sky-500"></span>
+                                    <span className="relative flex size-3">
+                                        <span className="absolute -top-6 left-10 inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+                                        <span className="relative -top-6 left-10 inline-flex size-3 rounded-full bg-sky-500"></span>
                                     </span>
                                     <FaBitcoin className="ml-1 " size={18} />
                                 </div>
