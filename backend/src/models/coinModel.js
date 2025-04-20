@@ -1,7 +1,9 @@
 import mongoose from 'mongoose'
 
 const coinSchema = mongoose.Schema({
-    id: { type: String, required: true },
+    token: { type: String, required: true },
+    marketplace: { type: String, required: true },
+    walletaddress: { type: String, required: true },
     description: { type: String, required: true },
     path: { type: String, required: true },
     x_link: {
