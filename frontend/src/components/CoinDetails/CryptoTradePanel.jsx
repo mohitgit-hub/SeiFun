@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import PriceChart from './PriceChart'
 import TradeButtonCombo from './TradeButtonCombo'
 
-const CryptoTradePanel = () => {
+const CryptoTradePanel = ({ coinData }) => {
     const [amount, setAmount] = useState('')
 
     const handleBuy = () => {
-        alert(`Buying ${amount} $MEME`)
+        alert(`Buying ${amount} ${coinData?.ticker || '$MEME'}`)
     }
 
     const handleSell = () => {
-        alert(`Selling ${amount} $MEME`)
+        alert(`Selling ${amount} ${coinData?.ticker || '$MEME'}`)
     }
 
     return (
@@ -22,6 +22,7 @@ const CryptoTradePanel = () => {
                     handleBuy={handleBuy}
                     handleSell={handleSell}
                     amount={amount}
+                    coinData={coinData}
                 />
             </div>
         </div>

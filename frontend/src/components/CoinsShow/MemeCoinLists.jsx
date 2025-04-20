@@ -150,6 +150,7 @@ export default function MemeCoinLists() {
                             tokenName={event.coin_name}
                             ticker={event.ticker}
                             creator={event.walletaddress}
+                            marketplace={event.marketplace}
                         />
                     ))
                 )}
