@@ -52,13 +52,12 @@ export default function MemeCoinCard({
                         <span className="text-sky-500">{`${creator.slice(0, 5)}...${creator.slice(-4)}`}</span>
                     </h5>
 
-                    <div className="flex mb-3 gap-3  items-center">
-                        {' '}
-                        <p className=" font-bold  text-xl text-gray-700 dark:text-gray-400 font-poppins">
-                            {tokenName}
+                    <div className="flex mb-3 gap-3 items-center">
+                        <p className="font-bold text-xl text-gray-700 dark:text-gray-400 font-poppins">
+                            {tokenName.length > 12 ? `${tokenName.slice(0, 12)}...` : tokenName}
                         </p>
                         <p className="bg-[#6b6b6b] px-3 py-1 text-gray-100 rounded-md text-md font-poppins">
-                            {ticker}
+                            {ticker.length > 12 ? `${ticker.slice(0, 12)}...` : ticker}
                         </p>
                     </div>
 
