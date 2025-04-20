@@ -2,14 +2,25 @@ import CoinModel from '../models/coinModel.js'
 
 export const createCoin = async (req, res) => {
     try {
-        const { id, description, path, x_link, tele_link, website_link } = req.body
+        const {
+            token,
+            marketplace,
+            walletaddress,
+            description,
+            path,
+            x_link,
+            tele_link,
+            website_link,
+        } = req.body
 
         if (!description || !path) {
             return res.status(400).json({ message: 'Description and image are required' })
         }
 
         const newCoin = new CoinModel({
-            id,
+            token,
+            marketplace,
+            walletaddress,
             description,
             path,
             x_link,
