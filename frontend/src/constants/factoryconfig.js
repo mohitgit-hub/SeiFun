@@ -1,7 +1,7 @@
 import { ethers } from 'ethers'
 import factoryABI from './factory.json'
 
-const factoryAddress = '0x17131a4EaB3532e16Da3b2236DE82D5D5379498b'
+const factoryAddress = '0x0c603AC3A1f28419C82000900800F5B1502b4685'
 
 // For write transactions using MetaMask
 export async function getFactoryContractWithSigner() {

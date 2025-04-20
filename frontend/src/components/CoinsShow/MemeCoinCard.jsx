@@ -15,6 +15,7 @@ export default function MemeCoinCard({
     tokenName,
     ticker,
     creator,
+    marketplace,
 }) {
     return (
         <div
@@ -22,7 +23,22 @@ export default function MemeCoinCard({
              hover:shadow-[-4px_-1px_45px_0px_rgba(236,_72,_153,_0.7)]`}
         >
             <div className="relative bg-white dark:bg-[#111114]  rounded-lg overflow-hidden">
-                <Link to={`/coin/${token}`}>
+                <Link
+                    to={`/coin/${token}`}
+                    state={{
+                        token,
+                        createdAt,
+                        description,
+                        imageUrl,
+                        x_link,
+                        tele_link,
+                        website_link,
+                        tokenName,
+                        ticker,
+                        creator,
+                        marketplace,
+                    }}
+                >
                     <img
                         className="rounded-t-lg w-full h-48 object-cover"
                         src={imageUrl}
@@ -60,7 +76,7 @@ export default function MemeCoinCard({
                                 <FaTelegramPlane className="text-xl text-gray-700 dark:text-white hover:text-sky-500" />
                             </a>
                         )}
-                        {tele_link && (
+                        {website_link && (
                             <a href={website_link} target="_blank" rel="noopener noreferrer">
                                 <HiOutlineLink className="text-xl text-gray-700 dark:text-white hover:text-sky-500" />
                             </a>

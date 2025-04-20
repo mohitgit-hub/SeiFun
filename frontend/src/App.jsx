@@ -14,6 +14,7 @@ import './services/walletConnection.jsx'
 // redux folder imports
 import store from './redux/store.js'
 import CoinDetails from './pages/CoinDetails'
+import Toast from './components/ui/Toast'
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                         </Route>
                     </Routes>
                 </div>
+                <Toast />
             </main>
         </Provider>
     )
