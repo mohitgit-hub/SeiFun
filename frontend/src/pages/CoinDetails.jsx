@@ -1,7 +1,7 @@
 import React from 'react'
 import CryptoTradePanel from '../components/CoinDetails/CryptoTradePanel'
-import TransactionList from '../components/Transaction/TransactionList'
 import { useLocation } from 'react-router-dom'
+import CoinTransactionTable from '@/components/Transaction/CoinTransactionTable'
 
 export default function CoinDetails() {
     const { state } = useLocation()
@@ -12,7 +12,7 @@ export default function CoinDetails() {
     return (
         <div>
             <CryptoTradePanel coinData={state} />
-            <TransactionList coinData={state} />
+            <CoinTransactionTable coinData={state} />
         </div>
     )
 }

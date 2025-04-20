@@ -73,7 +73,8 @@ export default function MemeCoinLists() {
             }
         }
 
-        return enrichedCoins
+        // Sort by createdAt in descending order (latest first)
+        return enrichedCoins.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
     }
 
     useEffect(() => {
@@ -90,7 +91,7 @@ export default function MemeCoinLists() {
         ? memeCoins.filter(
               (coin) =>
                   coin.coin_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                  coin.symbol.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                  coin.ticker.toLowerCase().includes(searchQuery.toLowerCase()) ||
                   coin.description.toLowerCase().includes(searchQuery.toLowerCase())
           )
         : memeCoins
@@ -100,19 +101,21 @@ export default function MemeCoinLists() {
             <div className="my-4 flex justify-between space-x-4 items-center border-b-2 border-gray-200 border-opacity-20 mb-12">
                 <div className="flex space-x-4">
                     <GlowButton path="/" text="Existing Meme Coin" />
-                    <GlowButton path="/transactions" text="My Transactions" />
+                    <GlowButton path="/userTransactions" text="My Transactions" />
                     <a href="/form.html" target="_blank" rel="noopener noreferrer">
                         <GlowButton text="Give Feedback" />
                     </a>
                 </div>
 
                 <div className="flex flex-col justify-center max-w-2xl">
-                    <p className="flex-1 font-poppins text-center  font-bold pr-2">
-                        <div className="text-4xl mr-2 mb-4">Deploy your Tokens With </div>
+                    <div className="flex-1 font-poppins text-center  font-bold pr-2">
+                        <div className="text-4xl mr-2 mb-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 bg-clip-text text-transparent">
+                            Deploy your Tokens With{' '}
+                        </div>
                         <div className="mb-4">
-                            <span className="text-sky-500 text-xl">
-                                OUR 💪ZERO CODE<span className="text-white"> Sei</span>.Fun Platform
-                                -{' '}
+                            <span className="text-sky-500 text-xl font-montserrat">
+                                OUR 💪NO CODE<span className="text-slate-100"> SEI.FUN </span>{' '}
+                                Platform -{' '}
                             </span>
                             <span className="text-xl">
                                 <ReactTyped
@@ -129,7 +132,7 @@ export default function MemeCoinLists() {
                                 />
                             </span>
                         </div>
-                    </p>
+                    </div>
                 </div>
             </div>
 

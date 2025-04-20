@@ -47,22 +47,22 @@ export default function MemeCoinCard({
                 </Link>
 
                 <div className="p-3">
-                    <h5 className="my-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white">
+                    <h5 className="my-2 text-sm font-bold tracking-tight text-gray-900 dark:text-slate-100 font-palanquin">
                         Created by -{' '}
                         <span className="text-sky-500">{`${creator.slice(0, 5)}...${creator.slice(-4)}`}</span>
                     </h5>
 
                     <div className="flex mb-3 gap-3  items-center">
                         {' '}
-                        <p className=" font-bold  text-xl text-gray-700 dark:text-gray-400">
+                        <p className=" font-bold  text-xl text-gray-700 dark:text-gray-400 font-poppins">
                             {tokenName}
                         </p>
-                        <p className="bg-[#6b6b6b] px-3 py-1 text-gray-100 rounded-md text-md">
+                        <p className="bg-[#6b6b6b] px-3 py-1 text-gray-100 rounded-md text-md font-poppins">
                             {ticker}
                         </p>
                     </div>
 
-                    <p className="mb-2 text-sm text-gray-700 dark:text-gray-400">
+                    <p className="mb-2 text-sm text-gray-700 dark:text-gray-400 font-montserrat">
                         {description.length > 20 ? description.slice(0, 30) + '...' : description}
                     </p>
                     <div className="flex justify-around gap-3 mt-2">
@@ -82,8 +82,15 @@ export default function MemeCoinCard({
                             </a>
                         )}
                     </div>
-                    <h5 className="my-2 text-sm font-bold tracking-tight text-gray-900 dark:text-slate-100">
-                        Created on - <span className="text-pink-500">{createdAt}</span>
+                    <h5 className="my-2 text-sm font-bold tracking-tight text-gray-900 dark:text-slate-100 font-palanquin">
+                        Created on -{' '}
+                        <span className="text-pink-500">
+                            {new Date(createdAt).toLocaleString('en-IN', {
+                                timeZone: 'Asia/Kolkata',
+                                dateStyle: 'long',
+                                timeStyle: 'short',
+                            })}
+                        </span>
                     </h5>
                 </div>
             </div>
