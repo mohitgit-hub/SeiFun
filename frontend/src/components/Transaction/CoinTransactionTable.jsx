@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Loader from '../ui/Loader'
 
-const TransactionList = () => {
+const CoinTransactionTable = () => {
     const [transactions, setTransactions] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -11,7 +11,7 @@ const TransactionList = () => {
             {
                 id: 1,
                 userId: 101,
-                coin: 'Bitcoin',
+
                 type: 'buy',
                 quantity: 0.005,
                 price: 3000000,
@@ -20,7 +20,7 @@ const TransactionList = () => {
             {
                 id: 2,
                 userId: 102,
-                coin: 'Ethereum',
+
                 type: 'sell',
                 quantity: 0.1,
                 price: 180000,
@@ -29,7 +29,7 @@ const TransactionList = () => {
             {
                 id: 3,
                 userId: 103,
-                coin: 'Solana',
+
                 type: 'buy',
                 quantity: 50,
                 price: 8000,
@@ -57,7 +57,7 @@ const TransactionList = () => {
                         <tr>
                             <th className="px-4 py-3">ID</th>
                             <th className="px-4 py-3">User ID</th>
-                            <th className="px-4 py-3">Coin</th>
+
                             <th className="px-4 py-3">Type</th>
                             <th className="px-4 py-3">Quantity</th>
                             <th className="px-4 py-3">Price</th>
@@ -72,7 +72,7 @@ const TransactionList = () => {
                             >
                                 <td className="px-4 py-2">{txn.id}</td>
                                 <td className="px-4 py-2">{txn.userId}</td>
-                                <td className="px-4 py-2">{txn.coin}</td>
+
                                 <td className="px-4 py-2 capitalize">{txn.type}</td>
                                 <td className="px-4 py-2">{txn.quantity}</td>
                                 <td className="px-4 py-2">₹{txn.price.toLocaleString()}</td>
@@ -88,4 +88,4 @@ const TransactionList = () => {
     )
 }
 
-export default TransactionList
+export default CoinTransactionTable

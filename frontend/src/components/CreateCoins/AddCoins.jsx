@@ -97,12 +97,6 @@ function AddCoins() {
     return (
         <div className="my-12 flex justify-around max-w-[1000px] mx-auto items-center">
             <div>
-                <ImageCreate
-                    description={formData.description}
-                    memeCoinTitle={formData.memeCoinTitle}
-                />
-            </div>
-            <div>
                 <CoinForm
                     formData={formData}
                     setFormData={setFormData}

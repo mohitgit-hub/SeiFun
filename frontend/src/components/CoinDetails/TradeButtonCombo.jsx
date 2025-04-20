@@ -1,6 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { ethers } from 'ethers'
+import marketplaceAbi from '../../constants/marketplace.json'
 
 export default function TradeButtonCombo({ handleBuy, handleSell, setAmount, amount, coinData }) {
+    const [calculatedPrice, setCalculatedPrice] = useState(null)
+
+    useEffect(() => {
+        const fetchPrice = async () => {
+            if (!window.ethereum || !coinData?.marketplace || !amount) {
+                setCalculatedPrice(null)
+                return
+            }
+
+            try {
+                const provider = new ethers.providers.Web3Provider(window.ethereum)
+                const contract = new ethers.Contract(coinData.marketplace, marketplaceAbi, provider)
+
+                const parsedAmount = ethers.utils.parseUnits(amount, 18)
+                const price = await contract.calculatePrice(parsedAmount)
+                setCalculatedPrice(ethers.utils.formatEther(price))
+            } catch (err) {
+                console.error('Price fetch error:', err)
+                setCalculatedPrice(null)
+            }
+        }
+
+        fetchPrice()
+    }, [amount, coinData?.marketplace])
+
     return (
         <div className="bg-darkGray rounded-2xl p-6 shadow-xl flex flex-col justify-between">
             <h2 className="text-xl font-semibold mb-4 text-center">
@@ -21,7 +48,7 @@ export default function TradeButtonCombo({ handleBuy, handleSell, setAmount, amo
                     {coinData?.createdAt}
                 </p>
                 <p>
-                    <span className="font-semibold text-white">Created At:</span>{' '}
+                    <span className="font-semibold text-white">Marketplace:</span>{' '}
                     {coinData?.marketplace}
                 </p>
                 <p>
@@ -82,6 +109,11 @@ export default function TradeButtonCombo({ handleBuy, handleSell, setAmount, amo
                     onChange={(e) => setAmount(e.target.value)}
                     className="px-4 py-2 rounded-xl bg-[#1f1f1f] text-white border border-gray-600 focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-500 transition duration-200"
                 />
+                {/* estimated cost (dynamically converts your token pricce into SEI) */}
+
+                {calculatedPrice && (
+                    <p className="text-green-400 text-sm">Estimated cost: {calculatedPrice} SEI</p>
+                )}
 
                 <div className="flex gap-4 mt-4">
                     <button
