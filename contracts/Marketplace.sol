@@ -32,6 +32,8 @@ contract Marketplace is Ownable, ReentrancyGuard {
         tokenAddress = ITokenCreation(_token);
     }
 
+    AllUserTransaction[] private globalTransactions;
+
     function getAvailableTokens() public view returns (uint256) {
         return tokenAddress.balanceOf(address(this));
     }
@@ -67,6 +69,26 @@ contract Marketplace is Ownable, ReentrancyGuard {
 
         emit TokensBought(msg.sender, tokensToBuy, tokenPrice);
         tokenAddress.transfer(msg.sender, tokensToBuy);
+        userTransactions[msg.sender].push(UserTransaction({
+    amount: tokensToBuy,
+    price: tokenPrice,
+    timestamp: block.timestamp,
+    txnType: TxnType.Buy
+    }));
+
+    AllUserTransaction memory txn = AllUserTransaction({
+    transactionId: globalTransactions.length,
+    transactionOf: msg.sender,
+    amount: tokensToBuy,
+    price: tokenPrice,
+    timestamp: block.timestamp,
+    txnType: TxnType.Buy
+});
+
+allUserTransactions[msg.sender].push(txn);
+globalTransactions.push(txn);
+
+
     }
 
     // Approval from JS
@@ -84,6 +106,28 @@ contract Marketplace is Ownable, ReentrancyGuard {
 
     emit TokensSold(msg.sender, _amountToSell, tokenPrice);
     payable(msg.sender).transfer(seiToReturnAfterFee);
+    userTransactions[msg.sender].push(UserTransaction({
+    amount: _amountToSell,
+    price: tokenPrice,
+    timestamp: block.timestamp,
+    txnType: TxnType.Sell
+}));
+
+    AllUserTransaction memory txn = AllUserTransaction({
+    transactionId: globalTransactions.length,
+    transactionOf: msg.sender,
+    amount: _amountToSell,
+    price: tokenPrice,
+    timestamp: block.timestamp,
+    txnType: TxnType.Sell
+});
+
+allUserTransactions[msg.sender].push(txn);
+globalTransactions.push(txn);
+
+
+
+
 }
 
     function withdrawFees() external {  
@@ -93,6 +137,36 @@ contract Marketplace is Ownable, ReentrancyGuard {
         feeCollected = 0;
         payable(factory).transfer(amount);
     }
+
+    enum TxnType { Buy, Sell }
+
+struct UserTransaction {
+    uint256 amount;
+    uint256 price;
+    uint256 timestamp;
+    TxnType txnType;
+}
+struct AllUserTransaction {
+    uint256 transactionId;
+    address transactionOf;
+    uint256 amount;
+    uint256 price;
+    uint256 timestamp;
+    TxnType txnType;
+}
+
+    mapping(address => UserTransaction[]) private userTransactions;
+    mapping(address => AllUserTransaction[]) private allUserTransactions;
+
+    function getAllTransactions(address user) external view returns (UserTransaction[] memory) {
+    return userTransactions[user];
+    }
+
+    function getAllTransactions() external view returns (AllUserTransaction[] memory) {
+    return globalTransactions;
+    }
+
+
 
     receive() external payable {}
 }
