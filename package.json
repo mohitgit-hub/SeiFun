@@ -2,19 +2,30 @@
   "name": "sei-fun",
   "version": "1.0.0",
   "description": "A project for Sei All star hackathon",
+  "homepage": "https://github.com/mohitgit-hub/SeiFun#readme",
+  "bugs": {
+    "url": "https://github.com/mohitgit-hub/SeiFun/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohitgit-hub/SeiFun.git"
+  },
   "license": "ISC",
   "author": "",
   "type": "commonjs",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "hardhat": "^2.22.19"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.2.0",
     "ethers": "^6.13.5"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.19"
   }
 }
