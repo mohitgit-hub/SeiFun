@@ -19,7 +19,7 @@ import UserTransactionTable from './components/Transaction/UserTransactionTable'
 function App() {
     return (
         <Provider store={store}>
-            <main className="bg-black min-h-screen">
+            <main className="bg-black min-h-screen ">
                 <div className="min-h-screen bg-black pb-10">
                     <Routes>
                         <Route element={<Layout />}>

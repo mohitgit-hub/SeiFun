@@ -44,10 +44,10 @@ function CoinForm({ formData, setFormData, handleSubmit }) {
 
     return (
         <form
-            className="max-w-lg w-full border-2 border-pink-200 border-opacity-15 px-12 pb-12 pt-8 rounded-md "
+            className="max-w-lg w-full md:border-2 md:border-pink-200 md:border-opacity-15 px-12 pb-12 md:pt-6 md:rounded-md "
             onSubmit={handleSubmit}
         >
-            <h2 className="text-slate-50 font-bold text-xl text-center mb-8 tracking-widest">
+            <h2 className="text-slate-50 font-bold md:text-2xl text-2xl text-center mb-8 tracking-wider">
                 Create Coin
             </h2>
 
@@ -71,7 +71,7 @@ function CoinForm({ formData, setFormData, handleSubmit }) {
                                 descriptionGenerate()
                             }
                         }}
-                        className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium tracking-wider rounded-lg text-pink-700 bg-pink-100 "
+                        className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold tracking-wider rounded-lg text-pink-700 bg-pink-100 "
                     >
                         Generate <span className="text-sm text-red-700 font-bold">AI*</span>
                     </button>
