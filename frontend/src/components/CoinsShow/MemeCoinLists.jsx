@@ -97,9 +97,9 @@ export default function MemeCoinLists() {
         : memeCoins
 
     return (
-        <div className="text-white max-w-[1200px] mx-auto min-h-screen">
-            <div className="my-4 flex justify-between space-x-4 items-center border-b-2 border-gray-200 border-opacity-20 mb-12">
-                <div className="flex space-x-4">
+        <div className="text-white md:max-w-[1200px] w-full mx-auto min-h-screen">
+            <div className="my-4 flex justify-between space-x-4 items-center border-b-2 border-gray-200 border-opacity-20 mb-2 md:mb-12">
+                <div className="hidden md:flex space-x-4">
                     <GlowButton path="/" text="Existing Meme Coin" />
                     <GlowButton path="/userTransactions" text="My Transactions" />
                     <a href="/form.html" target="_blank" rel="noopener noreferrer">
@@ -109,11 +109,12 @@ export default function MemeCoinLists() {
 
                 <div className="flex flex-col justify-center max-w-2xl">
                     <div className="flex-1 font-poppins text-center  font-bold pr-2">
-                        <div className="text-4xl mr-2 mb-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 bg-clip-text text-transparent">
-                            Deploy your Tokens With{' '}
+                        <div className="text-wrap text-4xl mr-2 mb-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 bg-clip-text text-transparent">
+                            Deploy your Tokens{' '}
+                            <span className="hidden md:inline-block">With</span>{' '}
                         </div>
-                        <div className="mb-4">
-                            <span className="text-sky-500 text-xl font-montserrat">
+                        <div className=" mb-4">
+                            <span className="hidden md:inline-block text-sky-500 text-xl font-montserrat">
                                 OUR 💪NO CODE<span className="text-slate-100"> SEI.FUN </span>{' '}
                                 Platform -{' '}
                             </span>
@@ -135,7 +136,9 @@ export default function MemeCoinLists() {
                     </div>
                 </div>
             </div>
-
+            <div className="text-2xl border-b-2 border-opacity-20 border-gray-200 text-center font-bold md:hidden tracking-widest mb-6 pb-3">
+                Existing Coins
+            </div>
             <div className="flex flex-wrap gap-8 justify-center max-w-[1200px] mx-auto">
                 {isFetching ? (
                     <Loader />

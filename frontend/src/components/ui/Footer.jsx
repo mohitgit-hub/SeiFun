@@ -2,27 +2,27 @@ import React from 'react'
 
 export default function Footer() {
     return (
-        <footer className="max-w-[1200px] mx-auto bg-white rounded-lg shadow-sm m-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 mt-[100px]">
-            <div className="flex justify-between items-center px-14 py-7">
+        <footer className="md:max-w-[1200px] max-w-80 mx-auto bg-white rounded-lg shadow-sm bg-gradient-to-r from-fuchsia-600 to-purple-600 mb-[200px] mt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center px-6 md:px-14 py-7 gap-4">
                 <div>
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                        Sei.Fun
-                    </span>
+                    <div className="font-extrabold self-center text-2xl whitespace-nowrap text-white">
+                        SEI.FUN
+                    </div>
                 </div>
                 <div>
-                    <ul className="flex gap-5 mx-8 text-white">
+                    <ul className="flex flex-col md:flex-row gap-3 md:gap-5 text-white items-center text-lg font-medium tracking-wider font-montserrat">
                         <li>
-                            <a href="/" className="hover:underline me-4 md:me-6">
+                            <a href="/" className="hover:underline">
                                 About
                             </a>
                         </li>
                         <li>
-                            <a href="/" className="hover:underline me-4 md:me-6">
+                            <a href="/" className="hover:underline">
                                 Privacy Policy
                             </a>
                         </li>
                         <li>
-                            <a href="/" className="hover:underline me-4 md:me-6">
+                            <a href="/" className="hover:underline">
                                 Licensing
                             </a>
                         </li>
