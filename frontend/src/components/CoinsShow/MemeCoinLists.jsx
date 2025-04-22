@@ -20,7 +20,7 @@ export default function MemeCoinLists() {
     const fetchBackendCoins = async () => {
         try {
             const backendRes = await axios.get(
-                `${import.meta.env.VITE_BACKEND_URL}/api/coin/getCoins`
+                `${import.meta.env.VITE_BACKEND_URL}api/coin/getCoins`
             )
             return backendRes.data // Returns the coins from MongoDB
         } catch (err) {

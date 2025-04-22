@@ -6,8 +6,9 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "lint": "eslint .",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "start": "vite preview --port $PORT",
+        "lint": "eslint ."
     },
     "dependencies": {
         "@google/genai": "^0.9.0",
