@@ -3,7 +3,7 @@ import { FiRefreshCw } from 'react-icons/fi'
 
 import { GoogleGenAI } from '@google/genai'
 
-const ai = new GoogleGenAI({ apiKey: 'AIzaSyCEbpgBq4DjNhNi2jnAYm_z_7Gdy5eT4QU' })
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API })
 
 function CoinForm({ formData, setFormData, handleSubmit }) {
     const [showMoreOptions, setShowMoreOptions] = useState(false)
