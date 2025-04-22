@@ -5,10 +5,13 @@ export const uploadImage = async (imageFile, setStatus) => {
         const formData = new FormData()
         formData.append('file', imageFile)
         formData.append('upload_preset', 'Sei-coin-images')
-        formData.append('cloud_name', import.meta.env.VITE_CLOUDINARY_CLOUD_NAME)
+        formData.append('cloud_name', 'dvtih3sd4')
 
         //setStatus('Sending image to the server...','info')
-        const res = await axios.post(import.meta.env.VITE_CLOUDINARY_BASE_URL, formData)
+        const res = await axios.post(
+            'https://api.cloudinary.com/v1_1/dvtih3sd4/image/upload',
+            formData
+        )
 
         const url = res.data.secure_url
         console.log('Image uploaded:', url)
