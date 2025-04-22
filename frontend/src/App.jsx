@@ -19,21 +19,18 @@ import UserTransactionTable from './components/Transaction/UserTransactionTable'
 function App() {
     return (
         <Provider store={store}>
-            <main className="bg-black min-h-screen ">
-                <div className="min-h-screen bg-black pb-10">
-                    <Routes>
-                        <Route element={<Layout />}>
-                            <Route path="/" element={<Homepage />} />
-                            <Route path="/coin/:id" element={<CoinDetails />} />
-                            <Route path="/addCoins" element={<CreateCoins />} />
-                            <Route path="/wallet" element={<WalletConnect />} />
-                            <Route path="/feedback" element={<FeedbackForm />} />
-                            <Route path="/userTransactions" element={<UserTransactionTable />} />
-                        </Route>
-                    </Routes>
-                </div>
-                <Toast />
-            </main>
+            <Routes>
+                <Route element={<Layout />}>
+                    <Route path="/" element={<Homepage />} />
+                    <Route path="/coin/:id" element={<CoinDetails />} />
+                    <Route path="/addCoins" element={<CreateCoins />} />
+                    <Route path="/wallet" element={<WalletConnect />} />
+                    <Route path="/feedback" element={<FeedbackForm />} />
+                    <Route path="/userTransactions" element={<UserTransactionTable />} />
+                </Route>
+            </Routes>
+
+            <Toast />
         </Provider>
     )
 }

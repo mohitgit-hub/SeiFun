@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { getFactoryContractWithSigner } from '../../constants/factoryconfig'
 import { uploadImage, createCoinInDB } from '../../services/api'
-import ImageCreate from './ImageCreate'
 import CoinForm from './CoinForm'
 import { showToast } from '../ui/Toast' // adjust path as needed
 
