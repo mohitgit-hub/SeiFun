@@ -56,7 +56,7 @@ export default function Navbar() {
 
                 {/* Search (only desktop) */}
                 {shouldShowSearch && (
-                    <div className="hidden md:block w-1/2">
+                    <div className="hidden xl:block w-1/2">
                         <Search />
                     </div>
                 )}
@@ -64,15 +64,15 @@ export default function Navbar() {
                 {/* Desktop Menu */}
                 <div className="hidden md:flex justify-center items-center tracking-widest ">
                     <ul className="flex justify-center items-center gap-8 text-md mx-8">
-                        <li className="animate-pulse border-2 border-pink-400 px-4 py-3 rounded-xl flex justify-center items-center">
+                        <li className="animate-pulse border-2 border-pink-400  px-2 py-1 xl:px-4 xl:py-3 rounded-xl flex justify-center items-center">
                             <Link to="/addCoins">
-                                <div className="flex items-center">
+                                <div className="flex items-center justify-center text-center">
                                     Create Coin
                                     <span className="relative flex size-3">
                                         <span className="absolute -top-6 left-10 inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
                                         <span className="relative -top-6 left-10 inline-flex size-3 rounded-full bg-sky-500"></span>
                                     </span>
-                                    <FaBitcoin className="ml-1" size={18} />
+                                    <FaBitcoin className="hidden xl:inline-block ml-1" size={18} />
                                 </div>
                             </Link>
                         </li>
@@ -129,7 +129,7 @@ export default function Navbar() {
                         <Link
                             to="/addCoins"
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-2"
+                            className="flex items-center justify-around"
                         >
                             <FaBitcoin /> Create Coin
                         </Link>
