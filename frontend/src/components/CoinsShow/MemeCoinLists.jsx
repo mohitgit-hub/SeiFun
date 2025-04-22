@@ -8,6 +8,10 @@ import Loader from '../ui/Loader'
 import { ReactTyped } from 'react-typed'
 import { fetchAllProjects } from '@/constants/factoryconfig.js'
 
+import { BsTwitterX } from 'react-icons/bs'
+import { FaGithub } from 'react-icons/fa'
+import { BiLogoTelegram } from 'react-icons/bi'
+
 export default function MemeCoinLists() {
     const [memeCoins, setMemeCoins] = useState([])
     const [isFetching, setIsFetching] = useState(true)
@@ -39,8 +43,15 @@ export default function MemeCoinLists() {
     }
 
     const mergeData = async () => {
-        const backendCoins = await fetchBackendCoins() // Step 1: Get backend coins
-        const onChainData = await fetchChainData() // Step 1: Get backend coins
+        const backendCoins = await fetchBackendCoins()
+        const onChainData = await fetchChainData()
+
+        // Create a hash map for fast lookup using token as key
+        const onChainMap = {}
+        for (const coin of onChainData) {
+            onChainMap[coin.token] = coin
+        }
+
         const enrichedCoins = []
 
         for (let coin of backendCoins) {
@@ -53,27 +64,25 @@ export default function MemeCoinLists() {
                 x_link,
                 tele_link,
                 website_link,
-            } = coin // Token as the unique identifier
+            } = coin
 
-            //filter the token details from the onchain formatted data
-            for (let onCoin of onChainData) {
-                if (onCoin.token === token) {
-                    enrichedCoins.push({
-                        ...onCoin, // Merge on-chain details into backend coin
-                        marketplace,
-                        walletaddress,
-                        description,
-                        path,
-                        x_link,
-                        tele_link,
-                        website_link,
-                        createdAt: coin.createdAt,
-                    })
-                }
+            const onCoin = onChainMap[token]
+            if (onCoin) {
+                enrichedCoins.push({
+                    ...onCoin,
+                    marketplace,
+                    walletaddress,
+                    description,
+                    path,
+                    x_link,
+                    tele_link,
+                    website_link,
+                    createdAt: coin.createdAt,
+                })
             }
         }
 
-        // Sort by createdAt in descending order (latest first)
+        // Sort by createdAt in descending order
         return enrichedCoins.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
     }
 
@@ -98,16 +107,53 @@ export default function MemeCoinLists() {
 
     return (
         <div className="text-white md:max-w-[1200px] w-full mx-auto min-h-screen">
-            <div className="my-4 flex justify-between space-x-4 items-center border-b-2 border-gray-200 border-opacity-20 mb-2 md:mb-12">
-                <div className="hidden md:flex space-x-4">
-                    <GlowButton path="/" text="Existing Meme Coin" />
-                    <GlowButton path="/userTransactions" text="My Transactions" />
-                    <a href="/form.html" target="_blank" rel="noopener noreferrer">
-                        <GlowButton text="Give Feedback" />
-                    </a>
+            <div className="sm:px-12 px-6 mx-auto xl:px-0 my-4 flex justify-between space-x-4 items-center border-b-2 border-gray-200 border-opacity-20 mb-2 md:mb-12">
+                <div className="hidden xl:flex xl:space-x-4 flex-wrap mx-auto xl:flex-col">
+                    <div className="flex justify-center mb-6 space-x-8">
+                        <div className="hover:text-blue-500 duration-300">
+                            <a
+                                href="https://x.com/SeiFunAI"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <BsTwitterX size={28} />
+                            </a>
+                        </div>
+                        <div className="hover:text-blue-500 duration-300">
+                            <a
+                                href="https://github.com/mohitgit-hub/SeiFun"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaGithub size={28} />
+                            </a>
+                        </div>
+                        <div className="hover:text-blue-500 duration-300">
+                            <a
+                                href="https://t.me/SeiFunAI"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <BiLogoTelegram size={28} />
+                            </a>
+                        </div>
+                    </div>
+                    <div className="flex space-x-4 mb-4">
+                        <div className="mb-4 xl:mb-0 mx-4 xl:mx-0">
+                            <GlowButton path="/" text="Existing Meme Coin" color={'pink'} />
+                        </div>
+                        <div className="mb-4 xl:mb-0 mx-4 xl:mx-0">
+                            <GlowButton path="/userTransactions" text="My Transactions" />
+                        </div>
+                        <div className="mb-4 xl:mb-0 mx-4 xl:mx-0">
+                            <a href="/form.html" target="_blank" rel="noopener noreferrer">
+                                <GlowButton text="Give Feedback" />
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="flex flex-col justify-center max-w-2xl">
+                <div className="flex flex-col justify-center max-w-2xl mb-4">
                     <div className="flex-1 font-poppins text-center  font-bold pr-2">
                         <div className="text-wrap text-4xl mr-2 mb-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 bg-clip-text text-transparent">
                             Deploy your Tokens{' '}

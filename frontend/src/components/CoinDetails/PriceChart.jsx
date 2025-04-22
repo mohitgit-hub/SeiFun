@@ -25,7 +25,12 @@ export default function PriceChart() {
         <>
             {/* Chart Section */}
             <div className="bg-darkGray rounded-2xl p-4 shadow-xl">
-                <h2 className="text-xl font-semibold mb-4 text-center">MEME Coin Price Chart</h2>
+                <h2 className="text-xl tracking-wider font-semibold mb-1 text-center">
+                    MEME Coin Price Chart
+                </h2>
+                <p className="text-sm text-center mb-4 text-gray-500">
+                    *Note this is under construction!
+                </p>
                 <div style={{ width: '100%', height: 300 }}>
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
