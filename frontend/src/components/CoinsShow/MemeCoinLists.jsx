@@ -19,7 +19,9 @@ export default function MemeCoinLists() {
 
     const fetchBackendCoins = async () => {
         try {
-            const backendRes = await axios.get('http://localhost:5000/api/coin/getCoins')
+            const backendRes = await axios.get(
+                `${import.meta.env.VITE_BACKEND_URL}/api/coin/getCoins`
+            )
             return backendRes.data // Returns the coins from MongoDB
         } catch (err) {
             console.error('Error fetching coins from backend:', err)
